@@ -35,7 +35,7 @@ namespace CalcFuel
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "Form1";
             this.Width = 300;
-            this.Height = 350;
+            this.Height = 275;
 
 
 
@@ -83,20 +83,20 @@ namespace CalcFuel
             //
             //
             //
-            LabelConsumptionFuel100km = new Label();
-            LabelConsumptionFuel100km.Text = "Cost Fuel($/1l):";
-            LabelConsumptionFuel100km.Location = new System.Drawing.Point(5, 83);
-            this.Controls.Add(LabelConsumptionFuel100km);
+            LabelCostFuel = new Label();
+            LabelCostFuel.Text = "Cost Fuel($/1l):";
+            LabelCostFuel.Location = new System.Drawing.Point(5, 83);
+            this.Controls.Add(LabelCostFuel);
 
 
 
             //
             //
             //
-            consumptionFuel100km = new TextBox();
-            consumptionFuel100km.Width = 140;
-            consumptionFuel100km.Location = new System.Drawing.Point(120, 80);
-            this.Controls.Add(consumptionFuel100km);
+            costFuel = new TextBox();
+            costFuel.Width = 140;
+            costFuel.Location = new System.Drawing.Point(120, 80);
+            this.Controls.Add(costFuel);
 
 
 
@@ -141,15 +141,28 @@ namespace CalcFuel
 
 
 
+            Calc = new Button();
+            Calc.Width = 200;
+            Calc.Height = 25;
+            Calc.Text = "Calculate";
+            Calc.Location = new System.Drawing.Point((this.Width / 2) - (Calc.Width / 2) - 10, 115);
+            Calc.Click += (s, e) =>
+            {
+                CostTravel.Text = ((float.Parse(distance.Text) / 100) * float.Parse(averageConsumption.Text) * float.Parse(costFuel.Text)).ToString();
+                ConsumptionFuel.Text = ((float.Parse(distance.Text) / 100) * float.Parse(averageConsumption.Text)).ToString();
+            };
+            this.Controls.Add(Calc);
+
         }
         TextBox distance;
         TextBox averageConsumption;
-        TextBox consumptionFuel100km;
+        TextBox costFuel;
         Label LabelDistance;
         Label LabelAverageConsumption;
-        Label LabelConsumptionFuel100km;
+        Label LabelCostFuel;
 
-        
+        Button Calc;
+
         Label LabelCostTravel;
         TextBox CostTravel;
         Label LabelConsumptionFuel;
